@@ -1,4 +1,4 @@
-package examples.org
+import examples.org.Hello
 
 object Application {
   def main(args: Array[String]): Unit = {

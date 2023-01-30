@@ -1,0 +1,6 @@
+scala_library(
+    name = "my-lib",
+    srcs = glob(["src/main/scala/**/*.scala"]),
+    visibility = ["//:__pkg__"],
+)
+
