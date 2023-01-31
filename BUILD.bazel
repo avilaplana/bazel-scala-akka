@@ -1,5 +1,5 @@
 scala_binary(
-    name = "build-my-app",
+    name = "my-app",
     srcs = ["Application.scala"],
     main_class = "Application",
     deps = ["//my-akka-library:my-lib"],

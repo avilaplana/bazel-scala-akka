@@ -2,5 +2,8 @@ scala_library(
     name = "my-lib",
     srcs = glob(["src/main/scala/**/*.scala"]),
     visibility = ["//:__pkg__"],
+    deps = [
+        "//3rdparty/jvm/joda_time:joda_time"
+    ]
 )
 
