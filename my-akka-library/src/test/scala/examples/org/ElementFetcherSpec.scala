@@ -12,6 +12,6 @@ class ElementFetcherSpec extends AnyFlatSpec with should.Matchers with ScalaFutu
   "An ElementFetcher" should "fetch the elements" in {
     val elements = ElementFetcher.fetchList(system).futureValue
     elements should contain theSameElementsAs
-      Iterable("this is the element 1", "this is the element 2", "this is the element 3")
+      List("this is the element 1", "this is the element 2", "this is the element 3")
   }
 }

@@ -7,9 +7,8 @@ import scala.concurrent.Future
 
 object ElementFetcher {
 
-  def fetchList(implicit system: ActorSystem): Future[immutable.Iterable[String]] = {
+  def fetchList(implicit system: ActorSystem): Future[immutable.Iterable[String]] =
     Source(List("1", "2", "3"))
       .map(e => s"this is the element $e")
       .runWith(Sink.collection)
-  }
 }

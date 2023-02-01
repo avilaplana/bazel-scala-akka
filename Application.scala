@@ -15,6 +15,4 @@ object Application {
     Await.ready(system.whenTerminated, Duration(1, TimeUnit.MINUTES))
   }
 
-
-
 }
