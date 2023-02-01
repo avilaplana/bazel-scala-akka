@@ -16,38 +16,16 @@ dependencies:
   #  explicitly named have public visibility, transitive dependencies not listed
   #   in the dependencies file have visibility limited to the
   #  third party directory.
-  com.google.cloud:
-    google-cloud-firestore:
-      lang: java
-      version: "3.0.21"
-
   com.typesafe.akka:
     akka:
       lang: scala
-      modules: [ "http", "http-core" ]
-      version: "10.2.7"
-    akka-stream:
-      lang: scala
-      version: "2.6.18"
-    akka-actor:
-      lang: scala
+      modules: [ "actor", "stream" ]
       version: "2.6.18"
 
-  io.jsonwebtoken:
-    jjwt:
-      lang: java
-      modules: [ "api", "impl", "orgjson" ]
-      version: "0.11.5"
-
-  org.mockito:
-    mockito-scala-scalatest:
+  org.scalatest:
+    scalatest:
       lang: scala
-      version: "1.14.0"
-
-  org.scalatestplus:
-    scalacheck-1-15:
-      lang: scala
-      version: "3.2.9.0"
+      version: "3.2.9"
 
 replacements:
   org.scala-lang:

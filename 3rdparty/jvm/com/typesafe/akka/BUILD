@@ -17,53 +17,6 @@ scala_import(
 
 
 
-scala_import(
-    name = "akka_http",
-    jars = [
-        "//external:jar/com/typesafe/akka/akka_http_2_13"
-    ],
-    runtime_deps = [
-        "//3rdparty/jvm/org/scala_lang:scala_library",
-        ":akka_http_core"
-    ],
-    visibility = [
-        "//visibility:public"
-    ]
-)
-
-
-
-scala_import(
-    name = "akka_http_core",
-    jars = [
-        "//external:jar/com/typesafe/akka/akka_http_core_2_13"
-    ],
-    runtime_deps = [
-        "//3rdparty/jvm/org/scala_lang:scala_library",
-        ":akka_parsing"
-    ],
-    visibility = [
-        "//visibility:public"
-    ]
-)
-
-
-
-scala_import(
-    name = "akka_parsing",
-    jars = [
-        "//external:jar/com/typesafe/akka/akka_parsing_2_13"
-    ],
-    runtime_deps = [
-        "//3rdparty/jvm/org/scala_lang:scala_library"
-    ],
-    visibility = [
-        "//3rdparty/jvm:__subpackages__"
-    ]
-)
-
-
-
 java_library(
     name = "akka_protobuf_v3_2_13",
     exports = [
