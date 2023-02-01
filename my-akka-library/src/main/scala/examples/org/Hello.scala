@@ -1,7 +1,16 @@
 package examples.org
 
-import org.joda.time.DateTime
+import akka.actor.ActorSystem
+import akka.stream.scaladsl._
+import scala.collection.immutable
+import scala.concurrent.Future
 
 class Hello {
-  def hello = "IN MAIN now: "+DateTime.now().plusYears(11)
+  implicit val system: ActorSystem = ActorSystem("reactive-tweets")
+
+  def hello: Future[immutable.Iterable[String]] = {
+    Source(List("1", "2", "3"))
+      .map(e => s"this is the element $e")
+      .runWith(Sink.collection)
+  }
 }
