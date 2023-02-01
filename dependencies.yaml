@@ -12,7 +12,10 @@ options:
   versionConflictPolicy: highest
 
 dependencies:
-
+  # TODO: https://github.com/johnynek/bazel-deps#assumptions-and-usage => Important: only dependencies
+  #  explicitly named have public visibility, transitive dependencies not listed
+  #   in the dependencies file have visibility limited to the
+  #  third party directory.
   com.google.cloud:
     google-cloud-firestore:
       lang: java
@@ -24,6 +27,9 @@ dependencies:
       modules: [ "http", "http-core" ]
       version: "10.2.7"
     akka-stream:
+      lang: scala
+      version: "2.6.18"
+    akka-actor:
       lang: scala
       version: "2.6.18"
 

@@ -2,5 +2,8 @@ scala_binary(
     name = "my-app",
     srcs = ["Application.scala"],
     main_class = "Application",
-    deps = ["//my-akka-library:my-lib"],
+    deps = [
+        "//3rdparty/jvm/com/typesafe/akka:akka_actor",
+        "//my-akka-library:my-lib"
+        ]
 )

@@ -3,6 +3,7 @@ scala_library(
     srcs = glob(["src/main/scala/**/*.scala"]),
     visibility = ["//:__pkg__"],
     deps = [
+        "//3rdparty/jvm/com/typesafe/akka:akka_actor",
         "//3rdparty/jvm/com/typesafe/akka:akka_stream"
     ]
 )

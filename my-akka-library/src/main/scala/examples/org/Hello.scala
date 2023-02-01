@@ -5,10 +5,9 @@ import akka.stream.scaladsl._
 import scala.collection.immutable
 import scala.concurrent.Future
 
-class Hello {
-  implicit val system: ActorSystem = ActorSystem("reactive-tweets")
+object ElementFetcher {
 
-  def hello: Future[immutable.Iterable[String]] = {
+  def fetchList(implicit system: ActorSystem): Future[immutable.Iterable[String]] = {
     Source(List("1", "2", "3"))
       .map(e => s"this is the element $e")
       .runWith(Sink.collection)
