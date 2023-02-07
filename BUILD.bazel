@@ -4,8 +4,8 @@ scala_binary(
     srcs = ["Application.scala"],
     main_class = "Application",
     deps = [
-        "//3rdparty/jvm/com/typesafe/akka:akka_actor",
-        "//my-akka-library:my-lib"
+        "@third_party//3rdparty/jvm/com/typesafe/akka:akka_actor",
+        "//my-akka-library:build"
         ],
     format = True,
 

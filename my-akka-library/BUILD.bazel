@@ -1,23 +1,23 @@
 load("//:my_rules.bzl", "scala_library", "scala_test")
 
 scala_library(
-    name = "my-lib",
+    name = "build",
     srcs = glob(["src/main/scala/**/*.scala"]),
     format = True,
     visibility = ["//:__pkg__"],
         deps = [
-            "//3rdparty/jvm/com/typesafe/akka:akka_actor",
-            "//3rdparty/jvm/com/typesafe/akka:akka_stream"
+            "@third_party//3rdparty/jvm/com/typesafe/akka:akka_actor",
+            "@third_party//3rdparty/jvm/com/typesafe/akka:akka_stream"
         ]
 )
 
 scala_test(
-    name = "my-lib-test",
+    name = "test",
     srcs = glob(["src/test/scala/**/*Spec.scala"]),
     format = True,
     deps = [
-                "//3rdparty/jvm/com/typesafe/akka:akka_actor",
-                "//3rdparty/jvm/org/scalatest:scalatest",
-                ":my-lib"
+                "@third_party//3rdparty/jvm/com/typesafe/akka:akka_actor",
+                "@third_party//3rdparty/jvm/org/scalatest:scalatest",
+                ":build"
             ]
 )
