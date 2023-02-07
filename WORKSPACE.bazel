@@ -1,5 +1,7 @@
 # WORKSPACE
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+
 
 skylib_version = "1.0.3"
 http_archive(
@@ -19,6 +21,65 @@ http_archive(
     url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
 )
 
+######################RULES KOTLIN ##############
+
+http_archive(
+        name = "io_bazel_rules_kotlin",
+        urls = ["https://github.com/vaticle/rules_kotlin/archive/c2519b00299cff9df22267e8359784e9948dba67.zip"],
+        type = "zip",
+        strip_prefix = "rules_kotlin-c2519b00299cff9df22267e8359784e9948dba67",
+        sha256 = "1455f2ec4bf7ea12d2c90b0dfd6402553c3bb6cbc0271023e2e01ccdefb4a49a",
+    )
+
+load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kotlin_repositories", "kt_register_toolchains")
+
+kotlin_repositories()
+
+kt_register_toolchains()
+
+######################BAZEL DISTRIBUTION ##############
+
+git_repository(
+    name = "vaticle_bazel_distribution",
+    remote = "https://github.com/vaticle/bazel-distribution",
+    commit = "149f581bf41305563b9f15f4186293644215b622",
+)
+
+load("@vaticle_bazel_distribution//maven:deps.bzl", "maven_artifacts_with_versions")
+
+######################JVM RULES ##############
+
+RULES_JVM_EXTERNAL_TAG = "3.1"
+
+RULES_JVM_EXTERNAL_SHA = "e246373de2353f3d34d35814947aa8b7d0dd1a58c2f7a6c41cfeaff3007c2d14"
+
+http_archive(
+    name = "rules_jvm_external",
+    sha256 = RULES_JVM_EXTERNAL_SHA,
+    strip_prefix = "rules_jvm_external-%s" % RULES_JVM_EXTERNAL_TAG,
+    url = "https://github.com/bazelbuild/rules_jvm_external/archive/%s.zip" % RULES_JVM_EXTERNAL_TAG,
+)
+
+load("@rules_jvm_external//:defs.bzl", "maven_install")
+
+maven_install(
+    artifacts = maven_artifacts_with_versions,
+    repositories = [
+        "https://repo.maven.apache.org/maven2/",
+        "https://mvnrepository.com/artifact",
+        "https://maven-central.storage.googleapis.com",
+        ],
+    generate_compat_repositories = True,
+)
+
+load("@maven//:defs.bzl", "pinned_maven_install")
+
+pinned_maven_install()
+
+load("@maven//:compat.bzl", "compat_repositories")
+
+compat_repositories()
+######################RULES SCALA ##############
 # Stores Scala version and other configuration
 # 2.12 is a default version, other versions can be use by passing them explicitly:
 # scala_config(scala_version = "2.11.12")
