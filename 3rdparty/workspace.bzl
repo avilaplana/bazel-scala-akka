@@ -32,7 +32,8 @@ filegroup(
         '{jar_name}',
         '{src_name}'
     ],
-    visibility = ['//visibility:public']
+    visibility = ['//visibility:public'],
+    tags = ['maven_coordinates={artifact}'],
 )\n""".format(artifact = ctx.attr.artifact, jar_name = jar_name, src_name = src_name, srcjar_attr = srcjar_attr)
     ctx.file(ctx.path("jar/BUILD"), build_file_contents, False)
     return None

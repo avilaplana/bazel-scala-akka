@@ -12,10 +12,6 @@ options:
   versionConflictPolicy: highest
 
 dependencies:
-  # TODO: https://github.com/johnynek/bazel-deps#assumptions-and-usage => Important: only dependencies
-  #  explicitly named have public visibility, transitive dependencies not listed
-  #   in the dependencies file have visibility limited to the
-  #  third party directory.
   com.typesafe.akka:
     akka:
       lang: scala

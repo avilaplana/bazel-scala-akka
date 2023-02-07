@@ -1,14 +1,19 @@
 load("//:my_rules.bzl", "scala_library", "scala_test")
+load("@vaticle_bazel_distribution//maven:rules.bzl", "assemble_maven", "deploy_maven")
 
 scala_library(
     name = "build",
     srcs = glob(["src/main/scala/**/*.scala"]),
     format = True,
     visibility = ["//:__pkg__"],
-        deps = [
-            "@third_party//3rdparty/jvm/com/typesafe/akka:akka_actor",
-            "@third_party//3rdparty/jvm/com/typesafe/akka:akka_stream"
-        ]
+    deps = [
+        "@third_party//3rdparty/jvm/com/typesafe/akka:akka_actor",
+        "@third_party//3rdparty/jvm/com/typesafe/akka:akka_stream"
+    ],
+    tags = [
+        "manual",
+        "maven_coordinates=org.avilaplana:bazel-scala-akka:{pom_version}",
+    ],
 )
 
 scala_test(
@@ -20,4 +25,18 @@ scala_test(
                 "@third_party//3rdparty/jvm/org/scalatest:scalatest",
                 ":build"
             ]
+)
+
+
+assemble_maven(
+    name = "assemble",
+    license = "apache",
+    project_description = "Playground bazel scala akka",
+    project_name = "Playground bazel scala akka",
+    project_url = "https://github.com/avilaplana/bazel-scala-akka.git",
+    scm_url = "https://github.com/avilaplana/bazel-scala-akka.git",
+    tags = ["manual"],
+    target = ":build",
+    version_file = "//maven:VERSION",
+    workspace_refs = "//maven:workspace_refs.json",
 )
